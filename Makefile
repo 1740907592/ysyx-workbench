@@ -1,5 +1,5 @@
 STUID = ysyx_22040000
-STUNAME = cxy
+STUNAME = cxy_test
 
 # DO NOT modify the following code!!!
 
