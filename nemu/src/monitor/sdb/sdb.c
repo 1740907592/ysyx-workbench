@@ -88,8 +88,8 @@ static int cmd_xm(char *args) {
     if (val[0] == '0' && (val[1] == 'x' || val[1] == 'X')) {
       value = atoll((val + 2));
     }
-    assert(value <= 0);
-    Assert(length < 1000,"too long to find");
+    
+    printf("%d",value);
     for (int i = 0; i * 4 < length; i++) {
       printf("memory:0X%x, val: 0X%x\n",value + i * 4, paddr_read(value + i * 4, 4));
     }
