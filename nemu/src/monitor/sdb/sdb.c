@@ -62,7 +62,7 @@ static struct {
   { "help", "Display information about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-  {"si [N]", "let program step N instruction and pause execute, if N is not given,  the default is 1", cmd_si},
+  {"si", "let program step N instruction and pause execute, if N is not given,  the default is 1", cmd_si},
 
   /* TODO: Add more commands */
 
