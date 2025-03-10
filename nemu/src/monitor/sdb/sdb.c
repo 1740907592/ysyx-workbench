@@ -80,11 +80,11 @@ static int cmd_xm(char *args) {
   if (len == NULL || val == NULL) {
     printf("please enter  len and val\n");
   } else {
-    //int length = atoi(len);
+    int length = atoll(len);
     uint32_t value = 0x80000000;
-    //for (int i = 0; i * 4 < length; i++) {
-      printf("0X%x",paddr_read(value, 4));
-    //}
+    for (int i = 0; i * 4 < length; i++) {
+      printf("memory:0X%x, val: 0X%x\n",value + i * 4, paddr_read(value, 4));
+    }
   }  
   return 0;
 
