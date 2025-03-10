@@ -75,7 +75,7 @@ static struct {
 
 
 static int cmd_xm(char *args) {
-  char *len = strtok(NULL, " ");
+  char *len = strtok(args, " ");
   char *val = strtok(NULL, " ");
   if (len == NULL || val == NULL) {
     printf("please enter  len and val\n");
