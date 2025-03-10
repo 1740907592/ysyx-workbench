@@ -53,7 +53,7 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_help(char *args);
-
+static int cmd_si(char *args);
 static struct {
   const char *name;
   const char *description;
@@ -62,6 +62,7 @@ static struct {
   { "help", "Display information about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
+  {"si [N]", "let program step N instruction and pause execute, if N is not given,  the default is 1", cmd_si},
 
   /* TODO: Add more commands */
 
@@ -91,7 +92,22 @@ static int cmd_help(char *args) {
   }
   return 0;
 }
-
+static int cmd_si(char *args) {
+  char *arg = strtok(NULL, " ");
+  char *test = strtok(NULL, " ");
+  if (test == NULL) {
+    if (arg == NULL) {
+      cpu_exec(1);
+    } else {
+      int a = atoi(arg);
+      cpu_exec(a);
+    }
+  } else {
+    printf("please enter zero or one number");
+  }
+  return 0;
+  
+}
 void sdb_set_batch_mode() {
   is_batch_mode = true;
 }
