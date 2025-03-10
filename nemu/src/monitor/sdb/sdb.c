@@ -78,18 +78,15 @@ static int cmd_xm(char *args) {
   char *len = strtok(NULL, " ");
 
   char *val = strtok(NULL, " ");
-  printf("%s\n",val);
 
   if (len == NULL || val == NULL) {
     printf("please enter  len and val\n");
   } else {
+    char *endptr;
     int length = atoll(len);
-    int value = 0;
-    if (val[0] == '0' && (val[1] == 'x' || val[1] == 'X')) {
-      value = atoll((val + 2));
-    }
+    int value = strtol(val,&endptr,16);
     
-    printf("%d",value);
+    
     for (int i = 0; i * 4 < length; i++) {
       printf("memory:0X%x, val: 0X%x\n",value + i * 4, paddr_read(value + i * 4, 4));
     }
