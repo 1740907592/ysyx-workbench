@@ -84,7 +84,7 @@ static int cmd_xm(char *args) {
   } else {
     int length = atoll(len);
     int value = atoll(val);
-    assert(value < 0);
+    assert(value <= 0);
     Assert(length < 1000,"too long to find");
     for (int i = 0; i * 4 < length; i++) {
       printf("memory:0X%x, val: 0X%x\n",value + i * 4, paddr_read(value + i * 4, 4));
