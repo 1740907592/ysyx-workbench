@@ -75,13 +75,17 @@ static struct {
 
 
 static int cmd_xm(char *args) {
-  char *len = strtok(args, " ");
+  char *copy = strdup(args);  // 创建可修改的副本
+
+  char *len = strtok(copy, " ");
   char *val = strtok(NULL, " ");
   if (len == NULL || val == NULL) {
     printf("please enter  len and val\n");
   } else {
     int length = atoll(len);
-    uint32_t value = atoll(val);
+    int value = atoll(val);
+    assert(value < 0);
+    Assert(length < 1000,"too long to find");
     for (int i = 0; i * 4 < length; i++) {
       printf("memory:0X%x, val: 0X%x\n",value + i * 4, paddr_read(value + i * 4, 4));
     }
