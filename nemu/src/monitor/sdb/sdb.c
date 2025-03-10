@@ -84,7 +84,10 @@ static int cmd_xm(char *args) {
     printf("please enter  len and val\n");
   } else {
     int length = atoll(len);
-    int value = atoll(val);
+    int value = 0;
+    if (val[0] == '0' && (val[1] == 'x' || val[1] == 'X')) {
+      value = atoll((val + 2));
+    }
     assert(value <= 0);
     Assert(length < 1000,"too long to find");
     for (int i = 0; i * 4 < length; i++) {
