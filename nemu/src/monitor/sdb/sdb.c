@@ -18,7 +18,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
-
+#include <memory/paddr.h>
 static int is_batch_mode = false;
 
 void init_regex();
@@ -55,6 +55,7 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 static int cmd_si(char *args);
 static int cmd_info(char *args);
+static int cmd_xm(char *args);
 static struct {
   const char *name;
   const char *description;
@@ -64,13 +65,30 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   {"si", "let program step N instruction and pause execute, if N is not given,  the default is 1", cmd_si},
-  {"info","print the register or the watch infomation",cmd_info}
+  {"info","print the register or the watch infomation",cmd_info},
+  {"x", "print memory about expr", cmd_xm}
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD ARRLEN(cmd_table)
 
+
+static int cmd_xm(char *args) {
+  char *len = strtok(NULL, " ");
+  char *val = strtok(NULL, " ");
+  if (len == NULL || val == NULL) {
+    printf("please enter  len and val\n");
+  } else {
+    int length = atoi(len);
+    int value = atoi(val);
+    for (int i = 0; i * 4 < length; i++) {
+      printf("memory 0X%x: val 0X%x", value + i * 4, paddr_read(value + 4 * i, 4));
+    }
+  }  
+  return 0;
+
+}
 static int cmd_info(char *args) {
   char *arg = strtok(NULL, " ");
   char *test = strtok(NULL, " ");
