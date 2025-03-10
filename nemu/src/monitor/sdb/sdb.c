@@ -78,7 +78,7 @@ static int cmd_info(char *args) {
     printf("please enter the register or the watch\n");
   } else {
     if (test == NULL) {
-      if (!strcmp(test,"r")) {
+      if (!strcmp(args,"r")) {
         isa_reg_display();
       } else if (!strcmp(test,"w")) {
 
