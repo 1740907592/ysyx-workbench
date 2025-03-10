@@ -83,7 +83,7 @@ static int cmd_xm(char *args) {
     int length = atoll(len);
     uint32_t value = 0x80000000;
     for (int i = 0; i * 4 < length; i++) {
-      printf("memory:0X%x, val: 0X%x\n",value + i * 4, paddr_read(value, 4));
+      printf("memory:0X%x, val: 0X%x\n",value + i * 4, paddr_read(value + i * 4, 4));
     }
   }  
   return 0;
