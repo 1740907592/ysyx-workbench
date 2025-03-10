@@ -81,7 +81,7 @@ static int cmd_xm(char *args) {
     printf("please enter  len and val\n");
   } else {
     //int length = atoi(len);
-    uint32_t value = atoll(val);
+    uint32_t value = 0x80000000;
     //for (int i = 0; i * 4 < length; i++) {
       printf("0X%x",paddr_read(value, 4));
     //}
