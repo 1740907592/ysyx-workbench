@@ -70,6 +70,7 @@ static struct {
 };
 
 #define NR_CMD ARRLEN(cmd_table)
+
 static int cmd_info(char *args) {
   char *arg = strtok(NULL, " ");
   char *test = strtok(NULL, " ");
