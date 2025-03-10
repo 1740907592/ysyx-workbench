@@ -75,9 +75,8 @@ static struct {
 
 
 static int cmd_xm(char *args) {
-  char *copy = strdup(args);  // 创建可修改的副本
 
-  char *len = strtok(copy, " ");
+  char *len = strtok(NULL, " ");
   char *val = strtok(NULL, " ");
   if (len == NULL || val == NULL) {
     printf("please enter  len and val\n");
