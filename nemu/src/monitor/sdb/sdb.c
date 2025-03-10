@@ -54,6 +54,7 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 static int cmd_si(char *args);
+static int cmd_info(char *args);
 static struct {
   const char *name;
   const char *description;
@@ -63,12 +64,34 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   {"si", "let program step N instruction and pause execute, if N is not given,  the default is 1", cmd_si},
-
+  {"info","print the register or the watch infomation",cmd_info}
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD ARRLEN(cmd_table)
+static int cmd_info(char *args) {
+  char *arg = strtok(NULL, " ");
+  char *test = strtok(NULL, " ");
+  if (arg == NULL) {
+    printf("please enter the register or the watch\n");
+  } else {
+    if (test == NULL) {
+      if (!strcmp(test,"r")) {
+        isa_reg_display();
+      } else if (!strcmp(test,"w")) {
+
+      } else {
+        printf("please enter r or the w\n");
+
+      }
+    } else {
+      printf("please enter  one args\n");
+
+    }
+  }
+  return 0;
+}
 
 static int cmd_help(char *args) {
   /* extract the first argument */
