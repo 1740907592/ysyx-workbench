@@ -1,5 +1,5 @@
 #include "Vtop.h"
-#include " verilated.h"
+#include "verilated.h"
 #include "verilated_vcd_c.h"  // VCD 文件生成支持
 #include <iostream>
 #include <stdio.h>
