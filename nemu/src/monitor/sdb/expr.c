@@ -239,7 +239,7 @@ int check_parenthese(uint32_t l, uint32_t r) {
   return balance == 0;
 }
 
-int max(int a, int b) {
+long long max(long long  a, long long b) {
   return a < b ? b : a;
 }
 long long eval(int l, int r) {
@@ -296,8 +296,8 @@ long long eval(int l, int r) {
       return INT32_MAX;
     }
     int type = tokens[opLoc].type;
-      long val1 = eval(l, opLoc - 1);
-      long val2 = eval(opLoc + 1, r);
+      long long val1 = eval(l, opLoc - 1);
+      long long val2 = eval(opLoc + 1, r);
       //根据主运算符深度枚举,减少复杂度
       switch (type) {
         case TK_ADD:
