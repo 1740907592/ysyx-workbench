@@ -52,8 +52,9 @@ static struct rule {
    {"\\|\\|", TK_OR},
    {"\\&\\&", TK_AND},
    {"0[xX][0-9a-fA-F]+", TK_HEX},  
-   {"\\$[a-zA-Z]*[0-9]*", TK_REG},    
-   {"[0-9]+", TK_NUM},      
+      {"[0-9]+", TK_NUM},      
+
+   {"\\$?[a-zA-Z]*[0-9]*", TK_REG},    
 
    
  
