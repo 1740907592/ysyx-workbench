@@ -82,6 +82,9 @@ static int cmd_pg(char* args){
   }
   bool flag = false;
   long val = expr(args, &flag);
+  if (val == INT32_MAX) {
+    return 0;
+  }
   printf("the value is %ld\n", val);
   return 0;
   

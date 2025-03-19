@@ -293,7 +293,7 @@ int eval(int l, int r) {
     }
     if (opLoc == -1) {
       printf("enter valid expr\n");
-      return 0;
+      return INT32_MAX;
     }
     int type = tokens[opLoc].type;
       long val1 = eval(l, opLoc - 1);
