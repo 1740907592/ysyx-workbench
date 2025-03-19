@@ -38,8 +38,8 @@ int main() {
           for (int j = -8; j <= 7; j++) {
             top->in_a = i;
             top->in_b = j;
-            step_and_dump_wave();
-            cout << top->res << endl;
+            step_and_dump_wave(); 
+            printf("%d\n",top->res);
           }
         }
       } else if (k == 1) {
