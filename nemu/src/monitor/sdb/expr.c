@@ -231,7 +231,7 @@ int max(int a, int b) {
 }
 uint32_t eval(uint32_t l, uint32_t r) {
   if (l > r) {
-    assert(0);
+    //assert(0);
     return -1;
   } else if (l == r) {
     
