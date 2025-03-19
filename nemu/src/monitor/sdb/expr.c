@@ -291,6 +291,10 @@ int eval(int l, int r) {
 
       }
     }
+    if (opLoc == -1) {
+      printf("enter valid expr\n");
+      return 0;
+    }
     int type = tokens[opLoc].type;
       long val1 = eval(l, opLoc - 1);
       long val2 = eval(opLoc + 1, r);
