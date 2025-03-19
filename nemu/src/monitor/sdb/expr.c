@@ -242,7 +242,7 @@ int check_parenthese(uint32_t l, uint32_t r) {
 int max(int a, int b) {
   return a < b ? b : a;
 }
-long eval(int l, int r) {
+long long eval(int l, int r) {
   if (l > r) {
     //assert(0);
     return INT32_MAX;
@@ -335,14 +335,14 @@ long eval(int l, int r) {
   }
   return INT32_MAX;
 }
-long expr(char *e, bool *success) {
+long long expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  long t = eval(0, nr_token - 1);
+  long long t = eval(0, nr_token - 1);
   if (t == INT32_MAX) {
     *success = false;
     return 0;
