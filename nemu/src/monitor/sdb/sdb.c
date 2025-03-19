@@ -82,7 +82,7 @@ static int cmd_pg(char* args){
   }
   bool flag = false;
   long val = expr(args, &flag);
-  printf("the value is %ld", val);
+  printf("the value is %ld\n", val);
   return 0;
   
 }
