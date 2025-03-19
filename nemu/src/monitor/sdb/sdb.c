@@ -81,11 +81,11 @@ static int cmd_pg(char* args){
       return 0;
   }
   bool flag = false;
-  int val = expr(args, &flag);
+  long long val = expr(args, &flag);
   if (val == INT32_MAX) {
     return 0;
   }
-  printf("the value is %d\n", val);
+  printf("the value is %lld\n", val);
   return 0;
   
 }
