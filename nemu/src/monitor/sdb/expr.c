@@ -323,10 +323,10 @@ long long eval(int l, int r) {
           return val1 != val2;
 
         case TK_OR:
-          return val1 || val2;
+          return val1 | val2;
 
         case TK_AND:
-          return val1 && val2;
+          return val1 & val2;
 
         default:
           printf("NO type\n");
