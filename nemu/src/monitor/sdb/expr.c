@@ -191,7 +191,7 @@ static bool make_token(char *e) {
         nr_token--;
         
     // 解引用是地址,前面不能有数,比如寄存器解码的数,或者num,或者hex, 还有一种情况,在第一个,直接进行解码思考了
-    //解引用条件用错了,错误寻址触发异常,使用两次pg *t0出现错误
+    //解引用条件用错了,错误寻址触发异常,使用两次pg *t0出现错误,当前解引用,后面的值直接消除了,reg,也直接评估了
     } else if ((tokens[i].type == TK_MUL && (i > 0) && (tokens[i - 1].type != TK_NUM
               && tokens[i - 1].type != TK_HEX && tokens[i - 1].type != TK_REG))
               || (tokens[i].type == TK_MUL && i == 0)) {
