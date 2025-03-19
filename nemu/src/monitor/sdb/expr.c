@@ -175,6 +175,7 @@ static bool make_token(char *e) {
       }
     } else if (tokens[i].type == TK_HEX) {
       int val = strtol(tokens[i].str, NULL, 16);
+      //1. 太大溢出了,改用long
       intToString(val, tokens[i].str);
       //负号前后判断,和解引用一样
     } else if ((tokens[i].type == TK_SUB && 
