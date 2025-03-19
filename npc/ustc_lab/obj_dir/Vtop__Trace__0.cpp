@@ -23,23 +23,10 @@ void Vtop___024root__trace_chg_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buffe
     // Init
     uint32_t* const oldp VL_ATTR_UNUSED = bufp->oldp(vlSymsp->__Vm_baseCode + 1);
     // Body
-    if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[0U])) {
-        bufp->chgCData(oldp+0,(vlSelf->top__DOT__my_seg__DOT__segs[0]),8);
-        bufp->chgCData(oldp+1,(vlSelf->top__DOT__my_seg__DOT__segs[1]),8);
-        bufp->chgCData(oldp+2,(vlSelf->top__DOT__my_seg__DOT__segs[2]),8);
-        bufp->chgCData(oldp+3,(vlSelf->top__DOT__my_seg__DOT__segs[3]),8);
-        bufp->chgCData(oldp+4,(vlSelf->top__DOT__my_seg__DOT__segs[4]),8);
-        bufp->chgCData(oldp+5,(vlSelf->top__DOT__my_seg__DOT__segs[5]),8);
-        bufp->chgCData(oldp+6,(vlSelf->top__DOT__my_seg__DOT__segs[6]),8);
-        bufp->chgCData(oldp+7,(vlSelf->top__DOT__my_seg__DOT__segs[7]),8);
-    }
-    bufp->chgCData(oldp+8,(vlSelf->b),4);
-    bufp->chgCData(oldp+9,(vlSelf->h),8);
-    bufp->chgBit(oldp+10,(vlSelf->en));
-    bufp->chgCData(oldp+11,(vlSelf->x),8);
-    bufp->chgCData(oldp+12,(vlSelf->y),3);
-    bufp->chgBit(oldp+13,(vlSelf->wok));
-    bufp->chgIData(oldp+14,(vlSelf->top__DOT__my_encode__DOT__st),32);
+    bufp->chgCData(oldp+0,(vlSelf->a),2);
+    bufp->chgCData(oldp+1,(vlSelf->b),2);
+    bufp->chgCData(oldp+2,(vlSelf->out),2);
+    bufp->chgBit(oldp+3,(vlSelf->Cout));
 }
 
 void Vtop___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {
@@ -47,7 +34,11 @@ void Vtop___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {
     // Init
     Vtop___024root* const __restrict vlSelf VL_ATTR_UNUSED = static_cast<Vtop___024root*>(voidSelf);
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VlUnpacked<CData/*0:0*/, 1> __Vm_traceActivity;
+    for (int __Vi0 = 0; __Vi0 < 1; ++__Vi0) {
+        __Vm_traceActivity[__Vi0] = 0;
+    }
     // Body
     vlSymsp->__Vm_activity = false;
-    vlSymsp->TOP.__Vm_traceActivity[0U] = 0U;
+    __Vm_traceActivity[0U] = 0U;
 }

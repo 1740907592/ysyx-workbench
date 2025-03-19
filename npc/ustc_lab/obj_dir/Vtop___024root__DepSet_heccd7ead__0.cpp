@@ -11,54 +11,9 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___ico_sequent__TOP__0\n"); );
     // Body
-    vlSelf->top__DOT__my_encode__DOT__st = 1U;
-    vlSelf->y = 0U;
-    vlSelf->wok = 0U;
-    if ((0x80U & (IData)(vlSelf->x))) {
-        vlSelf->y = 7U;
-        vlSelf->top__DOT__my_encode__DOT__st = 0U;
-        vlSelf->wok = 1U;
-    }
-    if ((1U & (((IData)(vlSelf->x) >> 6U) & vlSelf->top__DOT__my_encode__DOT__st))) {
-        vlSelf->y = 6U;
-        vlSelf->top__DOT__my_encode__DOT__st = 0U;
-        vlSelf->wok = 1U;
-    }
-    if ((1U & (((IData)(vlSelf->x) >> 5U) & vlSelf->top__DOT__my_encode__DOT__st))) {
-        vlSelf->y = 5U;
-        vlSelf->top__DOT__my_encode__DOT__st = 0U;
-        vlSelf->wok = 1U;
-    }
-    if ((1U & (((IData)(vlSelf->x) >> 4U) & vlSelf->top__DOT__my_encode__DOT__st))) {
-        vlSelf->y = 4U;
-        vlSelf->top__DOT__my_encode__DOT__st = 0U;
-        vlSelf->wok = 1U;
-    }
-    if ((1U & (((IData)(vlSelf->x) >> 3U) & vlSelf->top__DOT__my_encode__DOT__st))) {
-        vlSelf->y = 3U;
-        vlSelf->top__DOT__my_encode__DOT__st = 0U;
-        vlSelf->wok = 1U;
-    }
-    if ((1U & (((IData)(vlSelf->x) >> 2U) & vlSelf->top__DOT__my_encode__DOT__st))) {
-        vlSelf->y = 2U;
-        vlSelf->top__DOT__my_encode__DOT__st = 0U;
-        vlSelf->wok = 1U;
-    }
-    if ((1U & (((IData)(vlSelf->x) >> 1U) & vlSelf->top__DOT__my_encode__DOT__st))) {
-        vlSelf->y = 1U;
-        vlSelf->top__DOT__my_encode__DOT__st = 0U;
-        vlSelf->wok = 1U;
-    }
-    if ((1U & ((IData)(vlSelf->x) & vlSelf->top__DOT__my_encode__DOT__st))) {
-        vlSelf->y = 0U;
-        vlSelf->top__DOT__my_encode__DOT__st = 0U;
-        vlSelf->wok = 1U;
-    }
-    if ((1U & (~ (IData)(vlSelf->en)))) {
-        vlSelf->y = 0U;
-    }
-    vlSelf->h = (0xffU & (~ vlSelf->top__DOT__my_seg__DOT__segs
-                          [vlSelf->y]));
+    vlSelf->Cout = (1U & (((IData)(vlSelf->a) + (IData)(vlSelf->b)) 
+                          >> 2U));
+    vlSelf->out = (3U & ((IData)(vlSelf->a) + (IData)(vlSelf->b)));
 }
 
 void Vtop___024root___eval_ico(Vtop___024root* vlSelf) {
@@ -116,7 +71,7 @@ void Vtop___024root___eval(Vtop___024root* vlSelf) {
 #ifdef VL_DEBUG
                 Vtop___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("/home/cxy/Desktop/ysyx-workbench/npc/lab2/vsrc/top.v", 1, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("/home/cxy/Desktop/ysyx-workbench/npc/ustc_lab/vsrc/top.v", 1, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -139,7 +94,7 @@ void Vtop___024root___eval(Vtop___024root* vlSelf) {
 #ifdef VL_DEBUG
                     Vtop___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("/home/cxy/Desktop/ysyx-workbench/npc/lab2/vsrc/top.v", 1, "", "Active region did not converge.");
+                    VL_FATAL_MT("/home/cxy/Desktop/ysyx-workbench/npc/ustc_lab/vsrc/top.v", 1, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -154,7 +109,7 @@ void Vtop___024root___eval(Vtop___024root* vlSelf) {
 #ifdef VL_DEBUG
                 Vtop___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("/home/cxy/Desktop/ysyx-workbench/npc/lab2/vsrc/top.v", 1, "", "NBA region did not converge.");
+                VL_FATAL_MT("/home/cxy/Desktop/ysyx-workbench/npc/ustc_lab/vsrc/top.v", 1, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             Vtop___024root___eval_nba(vlSelf);
@@ -168,9 +123,9 @@ void Vtop___024root___eval_debug_assertions(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_debug_assertions\n"); );
     // Body
-    if (VL_UNLIKELY((vlSelf->b & 0xf0U))) {
+    if (VL_UNLIKELY((vlSelf->a & 0xfcU))) {
+        Verilated::overWidthError("a");}
+    if (VL_UNLIKELY((vlSelf->b & 0xfcU))) {
         Verilated::overWidthError("b");}
-    if (VL_UNLIKELY((vlSelf->en & 0xfeU))) {
-        Verilated::overWidthError("en");}
 }
 #endif  // VL_DEBUG

@@ -13,19 +13,14 @@ class Vtop___024root final : public VerilatedModule {
   public:
 
     // DESIGN SPECIFIC STATE
-    VL_IN8(en,0,0);
-    VL_IN8(b,3,0);
-    VL_OUT8(h,7,0);
-    VL_IN8(x,7,0);
-    VL_OUT8(y,2,0);
-    VL_OUT8(wok,0,0);
+    VL_IN8(a,1,0);
+    VL_IN8(b,1,0);
+    VL_OUT8(out,1,0);
+    VL_OUT8(Cout,0,0);
     CData/*0:0*/ __VactContinue;
-    IData/*31:0*/ top__DOT__my_encode__DOT__st;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VicoIterCount;
     IData/*31:0*/ __VactIterCount;
-    VlUnpacked<CData/*7:0*/, 8> top__DOT__my_seg__DOT__segs;
-    VlUnpacked<CData/*0:0*/, 1> __Vm_traceActivity;
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<1> __VicoTriggered;
     VlTriggerVec<0> __VactTriggered;

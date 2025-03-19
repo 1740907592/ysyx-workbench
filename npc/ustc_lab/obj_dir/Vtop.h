@@ -25,12 +25,10 @@ class Vtop VL_NOT_FINAL : public VerilatedModel {
     // PORTS
     // The application code writes and reads these signals to
     // propagate new values into/out from the Verilated model.
-    VL_IN8(&en,0,0);
-    VL_IN8(&b,3,0);
-    VL_OUT8(&h,7,0);
-    VL_IN8(&x,7,0);
-    VL_OUT8(&y,2,0);
-    VL_OUT8(&wok,0,0);
+    VL_IN8(&a,1,0);
+    VL_IN8(&b,1,0);
+    VL_OUT8(&out,1,0);
+    VL_OUT8(&Cout,0,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

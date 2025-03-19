@@ -11,34 +11,16 @@ VL_ATTR_COLD void Vtop___024root__trace_init_sub__TOP__0(Vtop___024root* vlSelf,
     // Init
     const int c = vlSymsp->__Vm_baseCode;
     // Body
-    tracep->declBus(c+9,"b", false,-1, 3,0);
-    tracep->declBus(c+10,"h", false,-1, 7,0);
-    tracep->declBit(c+11,"en", false,-1);
-    tracep->declBus(c+12,"x", false,-1, 7,0);
-    tracep->declBus(c+13,"y", false,-1, 2,0);
-    tracep->declBit(c+14,"wok", false,-1);
+    tracep->declBus(c+1,"a", false,-1, 1,0);
+    tracep->declBus(c+2,"b", false,-1, 1,0);
+    tracep->declBus(c+3,"out", false,-1, 1,0);
+    tracep->declBit(c+4,"Cout", false,-1);
     tracep->pushNamePrefix("top ");
-    tracep->declBus(c+9,"b", false,-1, 3,0);
-    tracep->declBus(c+10,"h", false,-1, 7,0);
-    tracep->declBit(c+11,"en", false,-1);
-    tracep->declBus(c+12,"x", false,-1, 7,0);
-    tracep->declBus(c+13,"y", false,-1, 2,0);
-    tracep->declBit(c+14,"wok", false,-1);
-    tracep->pushNamePrefix("my_encode ");
-    tracep->declBus(c+12,"x", false,-1, 7,0);
-    tracep->declBit(c+11,"en", false,-1);
-    tracep->declBus(c+13,"y", false,-1, 2,0);
-    tracep->declBit(c+14,"wok", false,-1);
-    tracep->declBus(c+16,"i", false,-1, 31,0);
-    tracep->declBus(c+15,"st", false,-1, 31,0);
+    tracep->declBus(c+1,"a", false,-1, 1,0);
+    tracep->declBus(c+2,"b", false,-1, 1,0);
+    tracep->declBus(c+3,"out", false,-1, 1,0);
+    tracep->declBit(c+4,"Cout", false,-1);
     tracep->popNamePrefix(1);
-    tracep->pushNamePrefix("my_seg ");
-    tracep->declBus(c+13,"b", false,-1, 2,0);
-    tracep->declBus(c+10,"h", false,-1, 7,0);
-    for (int i = 0; i < 8; ++i) {
-        tracep->declBus(c+1+i*1,"segs", true,(i+0), 7,0);
-    }
-    tracep->popNamePrefix(2);
 }
 
 VL_ATTR_COLD void Vtop___024root__trace_init_top(Vtop___024root* vlSelf, VerilatedVcd* tracep) {
@@ -81,20 +63,8 @@ VL_ATTR_COLD void Vtop___024root__trace_full_sub_0(Vtop___024root* vlSelf, Veril
     // Init
     uint32_t* const oldp VL_ATTR_UNUSED = bufp->oldp(vlSymsp->__Vm_baseCode);
     // Body
-    bufp->fullCData(oldp+1,(vlSelf->top__DOT__my_seg__DOT__segs[0]),8);
-    bufp->fullCData(oldp+2,(vlSelf->top__DOT__my_seg__DOT__segs[1]),8);
-    bufp->fullCData(oldp+3,(vlSelf->top__DOT__my_seg__DOT__segs[2]),8);
-    bufp->fullCData(oldp+4,(vlSelf->top__DOT__my_seg__DOT__segs[3]),8);
-    bufp->fullCData(oldp+5,(vlSelf->top__DOT__my_seg__DOT__segs[4]),8);
-    bufp->fullCData(oldp+6,(vlSelf->top__DOT__my_seg__DOT__segs[5]),8);
-    bufp->fullCData(oldp+7,(vlSelf->top__DOT__my_seg__DOT__segs[6]),8);
-    bufp->fullCData(oldp+8,(vlSelf->top__DOT__my_seg__DOT__segs[7]),8);
-    bufp->fullCData(oldp+9,(vlSelf->b),4);
-    bufp->fullCData(oldp+10,(vlSelf->h),8);
-    bufp->fullBit(oldp+11,(vlSelf->en));
-    bufp->fullCData(oldp+12,(vlSelf->x),8);
-    bufp->fullCData(oldp+13,(vlSelf->y),3);
-    bufp->fullBit(oldp+14,(vlSelf->wok));
-    bufp->fullIData(oldp+15,(vlSelf->top__DOT__my_encode__DOT__st),32);
-    bufp->fullIData(oldp+16,(0xffffffffU),32);
+    bufp->fullCData(oldp+1,(vlSelf->a),2);
+    bufp->fullCData(oldp+2,(vlSelf->b),2);
+    bufp->fullCData(oldp+3,(vlSelf->out),2);
+    bufp->fullBit(oldp+4,(vlSelf->Cout));
 }
