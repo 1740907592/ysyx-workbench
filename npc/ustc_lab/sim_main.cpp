@@ -44,8 +44,18 @@ void sim_exit() {
 
 int main() {
     sim_init();
-    top->out = 1;
-
+    top->a = 0;
+    top->b = 0;
+    step_and_dump_wave();
+    top->a = 0;
+    top->b = 1;
+    step_and_dump_wave();
+    top->a = 3
+    top->b = 0;
+    step_and_dump_wave();
+    top->a = 2;
+    top->b = 1;
+    step_and_dump_wave();
 
 
 
