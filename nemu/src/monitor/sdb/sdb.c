@@ -82,10 +82,8 @@ static int cmd_pg(char* args){
   }
   bool flag = false;
   long val = expr(args, &flag);
-  if (flag) {
-    return 0;
-  }
-  return val;
+  printf("the value is %ld", val);
+  return 0;
   
 }
 static int cmd_xm(char *args) {
