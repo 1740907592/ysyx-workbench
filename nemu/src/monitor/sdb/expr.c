@@ -35,9 +35,7 @@ static struct rule {
   int token_type;
 } rules[] = {
 
-  /* TODO: Add more rules.
-   * Pay attention to the precedence level of different rules.
-   */
+  
    {" +", TK_NOTYPE},   
     {"\\+", TK_ADD},        
    {"\\-", TK_SUB},
@@ -328,11 +326,11 @@ uint32_t eval(uint32_t l, uint32_t r) {
 
         default:
           printf("NO type\n");
-          assert(0);
       }
       //括号放错位置导致错误
   }
-  assert(0);
+  printf("entre right\n");
+  return -1;
 }
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
