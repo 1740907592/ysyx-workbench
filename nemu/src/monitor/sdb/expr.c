@@ -291,6 +291,10 @@ int eval(int l, int r) {
 
       }
     }
+    if (opLoc == -1) {
+      printf("enter valid expr\n");
+      return INT32_MAX;
+    }
     int type = tokens[opLoc].type;
       long val1 = eval(l, opLoc - 1);
       long val2 = eval(opLoc + 1, r);
@@ -329,7 +333,6 @@ int eval(int l, int r) {
       }
       //括号放错位置导致错误
   }
-  printf("entre right\n");
   return INT32_MAX;
 }
 long expr(char *e, bool *success) {
