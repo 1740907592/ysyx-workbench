@@ -242,7 +242,7 @@ int check_parenthese(uint32_t l, uint32_t r) {
 int max(int a, int b) {
   return a < b ? b : a;
 }
-uint32_t eval(uint32_t l, uint32_t r) {
+int eval(int l, int r) {
   if (l > r) {
     //assert(0);
     return -1;
