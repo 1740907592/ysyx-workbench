@@ -39,9 +39,9 @@ always @(posedge clk or posedge rst) begin
     end
 end
 assign seg[0] = ~segs[offset % 10];
- assign               seg[1] = ~segs[offset / 10 % 10];
+assign               seg[1] = ~segs[offset / 10 % 10];
 assign                seg[2] = ~segs[offset / 100 % 10];
- assign               seg[3] = ~segs[offset / 1000 % 10];
+assign               seg[3] = ~segs[offset / 1000 % 10];
 assign                seg[4] = ~segs[offset / 10000 % 10];
 assign                seg[5] = ~segs[offset / 100000 % 10];
 assign                seg[6] = ~segs[offset / 1000000 % 10];

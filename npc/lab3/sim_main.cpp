@@ -30,8 +30,6 @@ void sim_exit(){
 }
 int main() {
     sim_init();
-    top->in_a = -255,top->in_b = -8;
-    printf("%d%d\n",top->in_a,top->in_b);
     for (int k = 0; k <= 7; k++) {
       top->fun_sel = k;
       int cout = 0,overflow = 0,res = 0;
@@ -41,6 +39,7 @@ int main() {
             top->in_a = i;
             top->in_b = j;
             step_and_dump_wave();
+            cout << top->res << endl;
           }
         }
       } else if (k == 1) {
