@@ -25,7 +25,7 @@ enum {
   TK_NUM = 1,TK_KUOHAO,
   TK_ADD,TK_SUB,TK_DIV,TK_ZUO,TK_YOU,
   TK_HEX,TK_REG,TK_MUL,TK_NOEQ,TK_OR,
-  TK_AND,TK_LEQ, TK_DEREFERENCE
+  TK_AND,TK_LEQ
   /* TODO: Add more token types */
 
 };
@@ -38,12 +38,13 @@ static struct rule {
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
+   {" +", TK_NOTYPE},   
 
    {"\\(", TK_ZUO},          
    {"\\)", TK_YOU},       
    {"0[xX][0-9a-fA-F]+", TK_HEX},  
    {"\\$[a-zA-Z]*[0-9]*", TK_REG},    
-   {"[0-9]*", TK_NUM},      
+   {"[0-9]+", TK_NUM},      
    {"\\=\\=", TK_EQ},          
    {"\\!\\=", TK_NOEQ},
    {"\\|\\|", TK_OR},
@@ -52,8 +53,7 @@ static struct rule {
    {"\\+", TK_ADD},        
    {"\\-", TK_SUB},
    {"\\*", TK_MUL},
-   {"\\/", TK_DIV},
-   {" +", TK_NOTYPE}       
+   {"\\/", TK_DIV}
  
 };
 
@@ -120,6 +120,7 @@ static bool make_token(char *e) {
   nr_token = 0;
   int i;
   while (e[position] != '\0') {
+    //正则表达式错误,导致一直循环表达式,段错误
     for (i = 0; i < NR_REGEX; i++) {
       regmatch_t pmatch;
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
