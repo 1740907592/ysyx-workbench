@@ -38,8 +38,7 @@ int main() {
           for (int j = -8; j <= 7; j++) {
             top->in_a = i;
             top->in_b = j;
-            step_and_dump_wave(); 
-            printf("%d\n",top->res);
+            step_and_dump_wave();
           }
         }
       } else if (k == 1) {
@@ -90,7 +89,7 @@ int main() {
             step_and_dump_wave();
             res = (i <= j);
             if (res != top->res);
-              //printf("ina = %d,inb = %d,res = %d\n",top->in_a,top->in_b,top->res);
+              printf("ina = %d,inb = %d,res = %d\n",top->in_a,top->in_b,top->res);
           }
         }
       } else if (k == 7) {
