@@ -19,7 +19,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
-
+#include <memory/paddr.h>
 enum {
   TK_NOTYPE = 256, TK_EQ,
   TK_NUM = 1,TK_KUOHAO,
@@ -35,9 +35,7 @@ static struct rule {
   int token_type;
 } rules[] = {
 
-  /* TODO: Add more rules.
-   * Pay attention to the precedence level of different rules.
-   */
+  
    {" +", TK_NOTYPE},   
     {"\\+", TK_ADD},        
    {"\\-", TK_SUB},
@@ -52,8 +50,9 @@ static struct rule {
    {"\\|\\|", TK_OR},
    {"\\&\\&", TK_AND},
    {"0[xX][0-9a-fA-F]+", TK_HEX},  
-   {"\\$[a-zA-Z]*[0-9]*", TK_REG},    
-   {"[0-9]+", TK_NUM},      
+      {"[0-9]+", TK_NUM},      
+
+   {"\\$?[a-zA-Z]*[0-9]*", TK_REG},    
 
    
  
@@ -88,7 +87,7 @@ typedef struct token {
 uint32_t len;
 static Token tokens[32] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
-void intToString(int val, char res[]) {
+void intToString(long val, char res[]) {
   char buf[32];
   int len = 0;
   int fushu = 0;
@@ -141,7 +140,10 @@ static bool make_token(char *e) {
           case TK_NUM:
           case TK_REG:
           case TK_HEX:
+            //静态数组,赋值前要先情况缓冲区,否则之前的数据保留在里面,导致错误出现
+
             tokens[nr_token].type = rules[i].token_type;
+            memset(tokens[nr_token].str, 0, sizeof (tokens[nr_token].str));
             strncpy(tokens[nr_token].str, &e[position - substr_len], substr_len);
 
             nr_token++;
@@ -166,7 +168,8 @@ static bool make_token(char *e) {
   for (int i = 0; i < nr_token; i++) {
     if (tokens[i].type == TK_REG) {
       bool st = 1;
-      int val = isa_reg_str2val(tokens[i].str, &st);
+      //评估也有这个问题,前面的结果好像影响到后面了,相互覆盖导致的?
+      uint32_t val = isa_reg_str2val(tokens[i].str, &st);
       if (st) {
         intToString(val, tokens[i].str);
       } else {
@@ -190,14 +193,21 @@ static bool make_token(char *e) {
         nr_token--;
         
     // 解引用是地址,前面不能有数,比如寄存器解码的数,或者num,或者hex, 还有一种情况,在第一个,直接进行解码思考了
-    //解引用条件用错了,错误寻址触发异常
+    //解引用条件用错了,错误寻址触发异常,使用两次pg *t0出现错误,当前解引用,后面的值直接消除了,reg,也直接评估了
     } else if ((tokens[i].type == TK_MUL && (i > 0) && (tokens[i - 1].type != TK_NUM
               && tokens[i - 1].type != TK_HEX && tokens[i - 1].type != TK_REG))
               || (tokens[i].type == TK_MUL && i == 0)) {
-                int val = atoi(tokens[i + 1].str);
-                uintptr_t addr = (uintptr_t) val;
-                int now = *((int*)addr);
-                intToString(now, tokens[i + 1].str);
+                uintptr_t val = (uintptr_t)atoi(tokens[i + 1].str);
+                if (tokens[i + 1].type == TK_HEX) {
+                  val = strtol(tokens[i + 1].str, NULL, 16);
+                } else if (tokens[i + 1].type == TK_NUM) {
+                  val = atoi(tokens[i + 1].str);
+                } else if (tokens[i + 1].type == TK_REG) {
+                  bool st = 0;
+                  val = isa_reg_str2val(tokens[i + 1].str, &st);
+                }
+                uint32_t now =  paddr_read(val, 4);
+                intToString((int)now, tokens[i + 1].str);
 
                 for (int j = i + 1; j < nr_token; j++) {
                   tokens[j - 1] = tokens[j];
@@ -232,10 +242,10 @@ int check_parenthese(uint32_t l, uint32_t r) {
 int max(int a, int b) {
   return a < b ? b : a;
 }
-uint32_t eval(uint32_t l, uint32_t r) {
+int eval(int l, int r) {
   if (l > r) {
     //assert(0);
-    return -1;
+    return INT32_MAX;
   } else if (l == r) {
     
     return atoi(tokens[l].str);
@@ -282,8 +292,8 @@ uint32_t eval(uint32_t l, uint32_t r) {
       }
     }
     int type = tokens[opLoc].type;
-      uint32_t val1 = eval(l, opLoc - 1);
-      uint32_t val2 = eval(opLoc + 1, r);
+      long val1 = eval(l, opLoc - 1);
+      long val2 = eval(opLoc + 1, r);
       //根据主运算符深度枚举,减少复杂度
       switch (type) {
         case TK_ADD:
@@ -316,21 +326,21 @@ uint32_t eval(uint32_t l, uint32_t r) {
 
         default:
           printf("NO type\n");
-          assert(0);
       }
       //括号放错位置导致错误
   }
-  assert(0);
+  printf("entre right\n");
+  return INT32_MAX;
 }
-word_t expr(char *e, bool *success) {
+long expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  uint32_t t = eval(0, nr_token - 1);
-  if (t == -1) {
+  long t = eval(0, nr_token - 1);
+  if (t == INT32_MAX) {
     *success = false;
     return 0;
   }

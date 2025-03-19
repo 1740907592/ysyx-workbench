@@ -30,7 +30,7 @@ static char *code_format =
 "  printf(\"%%u\", result); "
 "  return 0; "
 "}";
-
+int cnt = 0;
 void gen_num() {
   int t = rand() % 10 + 1;
   buf[cnt++] = t + '0';
@@ -39,12 +39,11 @@ void gen_num() {
     gen_num();
   }
 }
-int cnt;
 static void gen(char a) {
   buf[cnt++] = a;
   int now = rand() % 2;
   while (now--) {
-    buf[cnt++] = " ";
+    buf[cnt++] = ' ';
   }
 }
 static void gen_rand_op() {
@@ -58,7 +57,7 @@ static void gen_rand_op() {
   }
   int now = rand() % 3;
   while (now--) {
-    buf[cnt++] = " ";
+    buf[cnt++] = ' ';
   }
   
 }
