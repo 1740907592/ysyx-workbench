@@ -194,10 +194,9 @@ static bool make_token(char *e) {
     } else if ((tokens[i].type == TK_MUL && (i > 0) && (tokens[i - 1].type != TK_NUM
               && tokens[i - 1].type != TK_HEX && tokens[i - 1].type != TK_REG))
               || (tokens[i].type == TK_MUL && i == 0)) {
-                int val = atoi(tokens[i + 1].str);
-                uintptr_t addr = (uintptr_t) val;
-                int now = *((int*)addr);
-                intToString(now, tokens[i + 1].str);
+                uintptr_t val = (uintptr_t)atoi(tokens[i + 1].str);
+                uint32_t now = *((uint32_t*)val);
+                intToString((int)now, tokens[i + 1].str);
 
                 for (int j = i + 1; j < nr_token; j++) {
                   tokens[j - 1] = tokens[j];
