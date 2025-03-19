@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "/build/obj_dir/Vtop.h"  // 通过符号链接访问
+#include "Vtop.h"  // 通过符号链接访问
 
 VerilatedContext* contextp = NULL;
 VerilatedVcdC* tfp = NULL;
