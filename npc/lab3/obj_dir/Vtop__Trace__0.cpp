@@ -25,12 +25,12 @@ void Vtop___024root__trace_chg_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buffe
     // Body
     bufp->chgBit(oldp+0,(vlSelf->clk));
     bufp->chgCData(oldp+1,(vlSelf->fun_sel),3);
-    bufp->chgCData(oldp+2,(vlSelf->in_a),4);
-    bufp->chgCData(oldp+3,(vlSelf->in_b),4);
-    bufp->chgCData(oldp+4,(vlSelf->res),4);
+    bufp->chgIData(oldp+2,(vlSelf->in_a),32);
+    bufp->chgIData(oldp+3,(vlSelf->in_b),32);
+    bufp->chgIData(oldp+4,(vlSelf->res),32);
     bufp->chgBit(oldp+5,(vlSelf->cout));
     bufp->chgBit(oldp+6,(vlSelf->Overflow));
-    bufp->chgCData(oldp+7,(vlSelf->top__DOT__my_alu__DOT__temp_res),4);
+    bufp->chgIData(oldp+7,(vlSelf->top__DOT__my_alu__DOT__temp_res),32);
 }
 
 void Vtop___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

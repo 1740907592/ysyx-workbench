@@ -130,11 +130,11 @@ VL_ATTR_COLD void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     // Body
     vlSelf->clk = VL_RAND_RESET_I(1);
     vlSelf->fun_sel = VL_RAND_RESET_I(3);
-    vlSelf->in_a = VL_RAND_RESET_I(4);
-    vlSelf->in_b = VL_RAND_RESET_I(4);
-    vlSelf->res = VL_RAND_RESET_I(4);
+    vlSelf->in_a = VL_RAND_RESET_I(32);
+    vlSelf->in_b = VL_RAND_RESET_I(32);
+    vlSelf->res = VL_RAND_RESET_I(32);
     vlSelf->cout = VL_RAND_RESET_I(1);
     vlSelf->Overflow = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__my_alu__DOT__temp_res = VL_RAND_RESET_I(4);
+    vlSelf->top__DOT__my_alu__DOT__temp_res = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__my_alu__DOT__temp_overflow = VL_RAND_RESET_I(1);
 }

@@ -13,11 +13,11 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new Vtop__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , fun_sel{vlSymsp->TOP.fun_sel}
+    , cout{vlSymsp->TOP.cout}
+    , Overflow{vlSymsp->TOP.Overflow}
     , in_a{vlSymsp->TOP.in_a}
     , in_b{vlSymsp->TOP.in_b}
     , res{vlSymsp->TOP.res}
-    , cout{vlSymsp->TOP.cout}
-    , Overflow{vlSymsp->TOP.Overflow}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

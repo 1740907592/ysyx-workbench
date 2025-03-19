@@ -13,28 +13,28 @@ VL_ATTR_COLD void Vtop___024root__trace_init_sub__TOP__0(Vtop___024root* vlSelf,
     // Body
     tracep->declBit(c+1,"clk", false,-1);
     tracep->declBus(c+2,"fun_sel", false,-1, 2,0);
-    tracep->declBus(c+3,"in_a", false,-1, 3,0);
-    tracep->declBus(c+4,"in_b", false,-1, 3,0);
-    tracep->declBus(c+5,"res", false,-1, 3,0);
+    tracep->declBus(c+3,"in_a", false,-1, 31,0);
+    tracep->declBus(c+4,"in_b", false,-1, 31,0);
+    tracep->declBus(c+5,"res", false,-1, 31,0);
     tracep->declBit(c+6,"cout", false,-1);
     tracep->declBit(c+7,"Overflow", false,-1);
     tracep->pushNamePrefix("top ");
     tracep->declBit(c+1,"clk", false,-1);
     tracep->declBus(c+2,"fun_sel", false,-1, 2,0);
-    tracep->declBus(c+3,"in_a", false,-1, 3,0);
-    tracep->declBus(c+4,"in_b", false,-1, 3,0);
-    tracep->declBus(c+5,"res", false,-1, 3,0);
+    tracep->declBus(c+3,"in_a", false,-1, 31,0);
+    tracep->declBus(c+4,"in_b", false,-1, 31,0);
+    tracep->declBus(c+5,"res", false,-1, 31,0);
     tracep->declBit(c+6,"cout", false,-1);
     tracep->declBit(c+7,"Overflow", false,-1);
     tracep->pushNamePrefix("my_alu ");
     tracep->declBit(c+1,"clk", false,-1);
     tracep->declBus(c+2,"fun_sel", false,-1, 2,0);
-    tracep->declBus(c+3,"in_a", false,-1, 3,0);
-    tracep->declBus(c+4,"in_b", false,-1, 3,0);
-    tracep->declBus(c+5,"res", false,-1, 3,0);
+    tracep->declBus(c+3,"in_a", false,-1, 31,0);
+    tracep->declBus(c+4,"in_b", false,-1, 31,0);
+    tracep->declBus(c+5,"res", false,-1, 31,0);
     tracep->declBit(c+6,"cout", false,-1);
     tracep->declBit(c+7,"Overflow", false,-1);
-    tracep->declBus(c+8,"temp_res", false,-1, 3,0);
+    tracep->declBus(c+8,"temp_res", false,-1, 31,0);
     tracep->declBit(c+9,"temp_overflow", false,-1);
     tracep->popNamePrefix(2);
 }
@@ -81,11 +81,11 @@ VL_ATTR_COLD void Vtop___024root__trace_full_sub_0(Vtop___024root* vlSelf, Veril
     // Body
     bufp->fullBit(oldp+1,(vlSelf->clk));
     bufp->fullCData(oldp+2,(vlSelf->fun_sel),3);
-    bufp->fullCData(oldp+3,(vlSelf->in_a),4);
-    bufp->fullCData(oldp+4,(vlSelf->in_b),4);
-    bufp->fullCData(oldp+5,(vlSelf->res),4);
+    bufp->fullIData(oldp+3,(vlSelf->in_a),32);
+    bufp->fullIData(oldp+4,(vlSelf->in_b),32);
+    bufp->fullIData(oldp+5,(vlSelf->res),32);
     bufp->fullBit(oldp+6,(vlSelf->cout));
     bufp->fullBit(oldp+7,(vlSelf->Overflow));
-    bufp->fullCData(oldp+8,(vlSelf->top__DOT__my_alu__DOT__temp_res),4);
+    bufp->fullIData(oldp+8,(vlSelf->top__DOT__my_alu__DOT__temp_res),32);
     bufp->fullBit(oldp+9,(vlSelf->top__DOT__my_alu__DOT__temp_overflow));
 }

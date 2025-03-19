@@ -15,14 +15,14 @@ class Vtop___024root final : public VerilatedModule {
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
     VL_IN8(fun_sel,2,0);
-    VL_IN8(in_a,3,0);
-    VL_IN8(in_b,3,0);
-    VL_OUT8(res,3,0);
     VL_OUT8(cout,0,0);
     VL_OUT8(Overflow,0,0);
-    CData/*3:0*/ top__DOT__my_alu__DOT__temp_res;
     CData/*0:0*/ top__DOT__my_alu__DOT__temp_overflow;
     CData/*0:0*/ __VactContinue;
+    VL_IN(in_a,31,0);
+    VL_IN(in_b,31,0);
+    VL_OUT(res,31,0);
+    IData/*31:0*/ top__DOT__my_alu__DOT__temp_res;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VicoIterCount;
     IData/*31:0*/ __VactIterCount;

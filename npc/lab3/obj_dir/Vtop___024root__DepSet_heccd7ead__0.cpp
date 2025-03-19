@@ -23,82 +23,80 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
                                                   == (IData)(vlSelf->fun_sel))) 
          | (7U == (IData)(vlSelf->fun_sel)))) {
         if ((0U == (IData)(vlSelf->fun_sel))) {
-            vlSelf->cout = (1U & ((VL_EXTENDS_II(5,4, (IData)(vlSelf->in_a)) 
-                                   + VL_EXTENDS_II(5,4, (IData)(vlSelf->in_b))) 
-                                  >> 4U));
+            vlSelf->cout = (1U & (IData)((1ULL & ((
+                                                   VL_EXTENDS_QI(33,32, vlSelf->in_a) 
+                                                   + 
+                                                   VL_EXTENDS_QI(33,32, vlSelf->in_b)) 
+                                                  >> 0x20U))));
             vlSelf->top__DOT__my_alu__DOT__temp_res 
-                = (0xfU & ((0x1fU & VL_EXTENDS_II(5,4, (IData)(vlSelf->in_a))) 
-                           + (0x1fU & VL_EXTENDS_II(5,4, (IData)(vlSelf->in_b)))));
-            vlSelf->Overflow = (((1U & ((IData)(vlSelf->in_a) 
-                                        >> 3U)) == 
-                                 (1U & ((IData)(vlSelf->in_b) 
-                                        >> 3U))) & 
-                                ((1U & ((IData)(vlSelf->top__DOT__my_alu__DOT__temp_res) 
-                                        >> 3U)) != 
-                                 (1U & ((IData)(vlSelf->in_a) 
-                                        >> 3U))));
+                = ((IData)((0x1ffffffffULL & VL_EXTENDS_QI(33,32, vlSelf->in_a))) 
+                   + (IData)((0x1ffffffffULL & VL_EXTENDS_QI(33,32, vlSelf->in_b))));
+            vlSelf->Overflow = (((vlSelf->in_a >> 0x1fU) 
+                                 == (vlSelf->in_b >> 0x1fU)) 
+                                & ((vlSelf->top__DOT__my_alu__DOT__temp_res 
+                                    >> 0x1fU) != (vlSelf->in_a 
+                                                  >> 0x1fU)));
         } else if ((1U == (IData)(vlSelf->fun_sel))) {
-            vlSelf->cout = (1U & ((VL_EXTENDS_II(5,4, (IData)(vlSelf->in_a)) 
-                                   + VL_EXTENDS_II(5,4, (IData)(vlSelf->in_b))) 
-                                  >> 4U));
+            vlSelf->cout = (1U & (IData)((1ULL & ((
+                                                   VL_EXTENDS_QI(33,32, vlSelf->in_a) 
+                                                   + 
+                                                   VL_EXTENDS_QI(33,32, vlSelf->in_b)) 
+                                                  >> 0x20U))));
             vlSelf->top__DOT__my_alu__DOT__temp_res 
-                = (0xfU & ((0x1fU & VL_EXTENDS_II(5,4, (IData)(vlSelf->in_a))) 
-                           + (0x1fU & VL_EXTENDS_II(5,4, (IData)(vlSelf->in_b)))));
-            vlSelf->Overflow = (((1U & ((IData)(vlSelf->in_a) 
-                                        >> 3U)) != 
-                                 (1U & ((IData)(vlSelf->in_b) 
-                                        >> 3U))) & 
-                                ((1U & ((IData)(vlSelf->top__DOT__my_alu__DOT__temp_res) 
-                                        >> 3U)) != 
-                                 (1U & ((IData)(vlSelf->in_a) 
-                                        >> 3U))));
+                = ((IData)((0x1ffffffffULL & VL_EXTENDS_QI(33,32, vlSelf->in_a))) 
+                   + (IData)((0x1ffffffffULL & VL_EXTENDS_QI(33,32, vlSelf->in_b))));
+            vlSelf->Overflow = (((vlSelf->in_a >> 0x1fU) 
+                                 != (vlSelf->in_b >> 0x1fU)) 
+                                & ((vlSelf->top__DOT__my_alu__DOT__temp_res 
+                                    >> 0x1fU) != (vlSelf->in_a 
+                                                  >> 0x1fU)));
         } else if ((2U == (IData)(vlSelf->fun_sel))) {
             vlSelf->cout = 0U;
             vlSelf->top__DOT__my_alu__DOT__temp_res 
-                = (0xfU & (~ (IData)(vlSelf->in_a)));
+                = (~ vlSelf->in_a);
             vlSelf->Overflow = 0U;
         } else if ((3U == (IData)(vlSelf->fun_sel))) {
             vlSelf->cout = 0U;
             vlSelf->top__DOT__my_alu__DOT__temp_res 
-                = ((IData)(vlSelf->in_a) & (IData)(vlSelf->in_b));
+                = (vlSelf->in_a & vlSelf->in_b);
             vlSelf->Overflow = 0U;
         } else if ((4U == (IData)(vlSelf->fun_sel))) {
             vlSelf->cout = 0U;
             vlSelf->top__DOT__my_alu__DOT__temp_res 
-                = ((IData)(vlSelf->in_a) | (IData)(vlSelf->in_b));
+                = (vlSelf->in_a | vlSelf->in_b);
             vlSelf->Overflow = 0U;
         } else if ((5U == (IData)(vlSelf->fun_sel))) {
             vlSelf->cout = 0U;
             vlSelf->top__DOT__my_alu__DOT__temp_res 
-                = ((IData)(vlSelf->in_a) ^ (IData)(vlSelf->in_b));
+                = (vlSelf->in_a ^ vlSelf->in_b);
             vlSelf->Overflow = 0U;
         } else if ((6U == (IData)(vlSelf->fun_sel))) {
-            vlSelf->cout = (1U & ((VL_EXTENDS_II(5,4, (IData)(vlSelf->in_a)) 
-                                   + VL_EXTENDS_II(5,4, (IData)(vlSelf->in_b))) 
-                                  >> 4U));
+            vlSelf->cout = (1U & (IData)((1ULL & ((
+                                                   VL_EXTENDS_QI(33,32, vlSelf->in_a) 
+                                                   + 
+                                                   VL_EXTENDS_QI(33,32, vlSelf->in_b)) 
+                                                  >> 0x20U))));
             vlSelf->cout = 0U;
             vlSelf->top__DOT__my_alu__DOT__temp_res 
-                = (0xfU & ((0x1fU & VL_EXTENDS_II(5,4, (IData)(vlSelf->in_a))) 
-                           + (0x1fU & VL_EXTENDS_II(5,4, (IData)(vlSelf->in_b)))));
-            vlSelf->Overflow = (((1U & ((IData)(vlSelf->in_a) 
-                                        >> 3U)) != 
-                                 (1U & ((IData)(vlSelf->in_b) 
-                                        >> 3U))) & 
-                                ((1U & ((IData)(vlSelf->top__DOT__my_alu__DOT__temp_res) 
-                                        >> 3U)) != 
-                                 (1U & ((IData)(vlSelf->in_a) 
-                                        >> 3U))));
+                = ((IData)((0x1ffffffffULL & VL_EXTENDS_QI(33,32, vlSelf->in_a))) 
+                   + (IData)((0x1ffffffffULL & VL_EXTENDS_QI(33,32, vlSelf->in_b))));
+            vlSelf->Overflow = (((vlSelf->in_a >> 0x1fU) 
+                                 != (vlSelf->in_b >> 0x1fU)) 
+                                & ((vlSelf->top__DOT__my_alu__DOT__temp_res 
+                                    >> 0x1fU) != (vlSelf->in_a 
+                                                  >> 0x1fU)));
             vlSelf->top__DOT__my_alu__DOT__temp_res 
-                = (0xfU & ((IData)(vlSelf->Overflow)
-                            ? ((8U & (IData)(vlSelf->top__DOT__my_alu__DOT__temp_res))
-                                ? 0U : 1U) : ((8U & (IData)(vlSelf->top__DOT__my_alu__DOT__temp_res))
-                                               ? 1U
-                                               : 0U)));
+                = ((IData)(vlSelf->Overflow) ? ((vlSelf->top__DOT__my_alu__DOT__temp_res 
+                                                 >> 0x1fU)
+                                                 ? 0U
+                                                 : 1U)
+                    : ((vlSelf->top__DOT__my_alu__DOT__temp_res 
+                        >> 0x1fU) ? 1U : 0U));
         } else {
             vlSelf->cout = 0U;
             vlSelf->top__DOT__my_alu__DOT__temp_res 
-                = (((IData)(vlSelf->in_a) == (IData)(vlSelf->in_b))
-                    ? 1U : 0U);
+                = ((vlSelf->in_a == vlSelf->in_b) ? 1U
+                    : 0U);
             vlSelf->Overflow = 0U;
         }
     } else {
@@ -220,9 +218,5 @@ void Vtop___024root___eval_debug_assertions(Vtop___024root* vlSelf) {
         Verilated::overWidthError("clk");}
     if (VL_UNLIKELY((vlSelf->fun_sel & 0xf8U))) {
         Verilated::overWidthError("fun_sel");}
-    if (VL_UNLIKELY((vlSelf->in_a & 0xf0U))) {
-        Verilated::overWidthError("in_a");}
-    if (VL_UNLIKELY((vlSelf->in_b & 0xf0U))) {
-        Verilated::overWidthError("in_b");}
 }
 #endif  // VL_DEBUG
