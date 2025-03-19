@@ -1,4 +1,4 @@
-module adder2bit(
+module top(
     input           [1:0]         a,
     input           [1:0]         b,
     output   reg    [1:0]         out,
