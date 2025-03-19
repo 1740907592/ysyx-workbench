@@ -39,7 +39,10 @@ int main() {
             top->in_a = i;
             top->in_b = j;
             step_and_dump_wave();
-            printf("ina = %d,inb = %d,res = %d\n",top->in_a,top->in_b,top->res);
+            if (top->res != top->in_a + top->in_b) {
+              printf("ina = %d,inb = %d,res = %d\n",top->in_a,top->in_b,top->res);
+
+            }
 
           }
         }
