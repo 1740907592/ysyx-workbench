@@ -245,7 +245,7 @@ int max(int a, int b) {
 int eval(int l, int r) {
   if (l > r) {
     //assert(0);
-    return -1;
+    return INT32_MAX;
   } else if (l == r) {
     
     return atoi(tokens[l].str);
@@ -330,7 +330,7 @@ int eval(int l, int r) {
       //括号放错位置导致错误
   }
   printf("entre right\n");
-  return -1;
+  return INT32_MAX;
 }
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -339,8 +339,8 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  uint32_t t = eval(0, nr_token - 1);
-  if (t == -1) {
+  long t = eval(0, nr_token - 1);
+  if (t == INT32_MAX) {
     *success = false;
     return 0;
   }
