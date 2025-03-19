@@ -1,9 +1,9 @@
 module top(
    input clk,
     input [2:0] fun_sel,
-    input signed [3:0] in_a,
-    input signed  [3:0] in_b,
-    output reg signed [3:0] res,
+    input signed [31:0] in_a,
+    input signed  [31:0] in_b,
+    output reg signed [31:0] res,
     output reg cout,
     output reg Overflow
 );

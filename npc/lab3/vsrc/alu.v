@@ -1,14 +1,14 @@
 module alu (
     input clk,
     input [2:0] fun_sel,
-    input signed [3:0] in_a,
-    input signed  [3:0] in_b,
-    output reg signed [3:0] res,
+    input signed [31:0] in_a,
+    input signed  [31:0] in_b,
+    output reg signed [31:0] res,
     output reg cout,
     output reg Overflow
 
 );
-    reg signed [3:0] temp_res;
+    reg signed [31:0] temp_res;
     reg temp_overflow; // 修改为 1 位
 
     always @(fun_sel, in_a, in_b) begin
@@ -20,11 +20,11 @@ module alu (
         case (fun_sel)
             0: begin // 加法
                 {cout, temp_res} = in_a + in_b;
-                Overflow = (in_a[3] == in_b[3]) && (temp_res[3] != in_a[3]);
+                Overflow = (in_a[31] == in_b[31]) && (temp_res[31] != in_a[31]);
             end
             1: begin // 减法
                 {cout, temp_res} = in_a + in_b;
-                Overflow = (in_a[3] != in_b[3]) && (temp_res[3] != in_a[3]);
+                Overflow = (in_a[31] != in_b[31]) && (temp_res[31] != in_a[31]);
             end
             2: begin // 取反
                 temp_res = ~in_a;
@@ -48,11 +48,11 @@ module alu (
             end
             6: begin // 有符号比较（in_a < in_b）
                 {cout, temp_res} = in_a + in_b;
-                Overflow = (in_a[3] != in_b[3]) && (temp_res[3] != in_a[3]);
+                Overflow = (in_a[31] != in_b[31]) && (temp_res[31] != in_a[31]);
                 if (!Overflow) begin
-                    temp_res = (temp_res[3] == 1) ? 1 : 0;
+                    temp_res = (temp_res[31] == 1) ? 1 : 0;
                 end else begin
-                    temp_res = (temp_res[3] == 0) ? 1 : 0;
+                    temp_res = (temp_res[31] == 0) ? 1 : 0;
                 end
                 cout = 0; // 比较操作不需要进位
             end
