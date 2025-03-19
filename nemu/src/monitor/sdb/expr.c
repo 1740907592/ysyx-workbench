@@ -39,21 +39,21 @@ static struct rule {
    * Pay attention to the precedence level of different rules.
    */
    {" +", TK_NOTYPE},   
-
+    {"\\+", TK_ADD},        
+   {"\\-", TK_SUB},
+   {"\\*", TK_MUL},
+   {"\\/", TK_DIV},
    {"\\(", TK_ZUO},          
    {"\\)", TK_YOU},       
    {"0[xX][0-9a-fA-F]+", TK_HEX},  
    {"\\$[a-zA-Z]*[0-9]*", TK_REG},    
-   {"[0-9]*", TK_NUM},      
+   {"[0-9]+", TK_NUM},      
    {"\\=\\=", TK_EQ},          
    {"\\!\\=", TK_NOEQ},
    {"\\|\\|", TK_OR},
    {"\\&\\&", TK_AND},
    {"\\<\\=", TK_LEQ},
-   {"\\+", TK_ADD},        
-   {"\\-", TK_SUB},
-   {"\\*", TK_MUL},
-   {"\\/", TK_DIV}
+   
  
 };
 
