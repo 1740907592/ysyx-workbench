@@ -44,15 +44,17 @@ static struct rule {
    {"\\*", TK_MUL},
    {"\\/", TK_DIV},
    {"\\(", TK_ZUO},          
-   {"\\)", TK_YOU},       
-   {"0[xX][0-9a-fA-F]+", TK_HEX},  
-   {"\\$[a-zA-Z]*[0-9]*", TK_REG},    
-   {"[0-9]+", TK_NUM},      
+   {"\\)", TK_YOU},     
+   {"\\<\\=", TK_LEQ},
+  
    {"\\=\\=", TK_EQ},          
    {"\\!\\=", TK_NOEQ},
    {"\\|\\|", TK_OR},
    {"\\&\\&", TK_AND},
-   {"\\<\\=", TK_LEQ},
+   {"0[xX][0-9a-fA-F]+", TK_HEX},  
+   {"\\$[a-zA-Z]*[0-9]*", TK_REG},    
+   {"[0-9]+", TK_NUM},      
+
    
  
 };
