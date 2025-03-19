@@ -56,6 +56,7 @@ static int cmd_help(char *args);
 static int cmd_si(char *args);
 static int cmd_info(char *args);
 static int cmd_xm(char *args);
+static int cmd_pg(char *args);
 static struct {
   const char *name;
   const char *description;
@@ -66,21 +67,34 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   {"si", "let program step N instruction and pause execute, if N is not given,  the default is 1", cmd_si},
   {"info","print the register or the watch infomation",cmd_info},
-  {"x", "print memory about expr", cmd_xm}
+  {"x", "print memory about expr", cmd_xm},
+  {"pg", "get the value", cmd_pg}
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD ARRLEN(cmd_table)
 
-
+static int cmd_pg(char* args){
+  if(args == NULL){
+      printf("No args\n");
+      return 0;
+  }
+  bool flag = false;
+  long val = expr(args, &flag);
+  if (flag) {
+    return 0;
+  }
+  return val;
+  
+}
 static int cmd_xm(char *args) {
   char *len = strtok(NULL, " ");
 
   char *val = strtok(NULL, " ");
 
   if (len == NULL || val == NULL) {
-    printf("please enter  len and val\n");
+    printf("please enter len and val\n");
   } else {
     char *endptr;
     int length = atoll(len);

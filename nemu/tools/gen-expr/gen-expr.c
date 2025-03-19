@@ -31,8 +31,52 @@ static char *code_format =
 "  return 0; "
 "}";
 
+void gen_num() {
+  int t = rand() % 10 + 1;
+  buf[cnt++] = t + '0';
+  int time = rand() % 30;
+  while (time) {
+    gen_num();
+  }
+}
+int cnt;
+static void gen(char a) {
+  buf[cnt++] = a;
+  int now = rand() % 2;
+  while (now--) {
+    buf[cnt++] = " ";
+  }
+}
+static void gen_rand_op() {
+  int t = rand() % 4;
+  switch (t) {
+    case 0: buf[cnt++] = '+'; break;
+    case 1: buf[cnt++] = '-'; break;
+    case 2: buf[cnt++] = '*'; break;
+    case 3: buf[cnt++] = '/'; break;
+
+  }
+  int now = rand() % 3;
+  while (now--) {
+    buf[cnt++] = " ";
+  }
+  
+}
+
 static void gen_rand_expr() {
-  buf[0] = '\0';
+  if (cnt > 60000) {
+    printf("too long\n");
+  }
+   int t = rand() % 3;
+   if (strlen(buf) > 100) {
+    return;
+   }
+   switch (t) {
+      case 0: gen_num(); break;
+      case 1: gen('('); gen_rand_expr(); gen(')'); break;
+      default: gen_rand_expr(); gen_rand_op(); gen_rand_expr(); break;
+   }
+  
 }
 
 int main(int argc, char *argv[]) {
@@ -44,6 +88,7 @@ int main(int argc, char *argv[]) {
   }
   int i;
   for (i = 0; i < loop; i ++) {
+    cnt = 0;
     gen_rand_expr();
 
     sprintf(code_buf, code_format, buf);
