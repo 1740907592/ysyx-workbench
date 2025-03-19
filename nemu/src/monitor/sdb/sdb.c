@@ -18,7 +18,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
-
+#include <memory/paddr.h>
 static int is_batch_mode = false;
 
 void init_regex();
@@ -53,7 +53,10 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_help(char *args);
-
+static int cmd_si(char *args);
+static int cmd_info(char *args);
+static int cmd_xm(char *args);
+static int cmd_pg(char *args);
 static struct {
   const char *name;
   const char *description;
@@ -62,12 +65,69 @@ static struct {
   { "help", "Display information about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-
+  {"si", "let program step N instruction and pause execute, if N is not given,  the default is 1", cmd_si},
+  {"info","print the register or the watch infomation",cmd_info},
+  {"x", "print memory about expr", cmd_xm},
+  {"pg", "get the value", cmd_pg}
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD ARRLEN(cmd_table)
+
+static int cmd_pg(char* args){
+  if(args == NULL){
+      printf("No args\n");
+      return 0;
+  }
+  bool flag = false;
+  long val = expr(args, &flag);
+  printf("the value is %ld\n", val);
+  return 0;
+  
+}
+static int cmd_xm(char *args) {
+  char *len = strtok(NULL, " ");
+
+  char *val = strtok(NULL, " ");
+
+  if (len == NULL || val == NULL) {
+    printf("please enter len and val\n");
+  } else {
+    char *endptr;
+    int length = atoll(len);
+    int value = strtol(val,&endptr,16);
+    
+    
+    for (int i = 0; i * 4 < length; i++) {
+      printf("memory:0X%x, val: 0X%x\n",value + i * 4, paddr_read(value + i * 4, 4));
+    }
+  }  
+  return 0;
+
+}
+static int cmd_info(char *args) {
+  char *arg = strtok(NULL, " ");
+  char *test = strtok(NULL, " ");
+  if (arg == NULL) {
+    printf("please enter the register or the watch\n");
+  } else {
+    if (test == NULL) {
+      if (!strcmp(args,"r")) {
+        isa_reg_display();
+      } else if (!strcmp(test,"w")) {
+
+      } else {
+        printf("please enter r or the w\n");
+
+      }
+    } else {
+      printf("please enter  one args\n");
+
+    }
+  }
+  return 0;
+}
 
 static int cmd_help(char *args) {
   /* extract the first argument */
@@ -91,7 +151,22 @@ static int cmd_help(char *args) {
   }
   return 0;
 }
-
+static int cmd_si(char *args) {
+  char *arg = strtok(NULL, " ");
+  char *test = strtok(NULL, " ");
+  if (test == NULL) {
+    if (arg == NULL) {
+      cpu_exec(1);
+    } else {
+      int a = atoi(arg);
+      cpu_exec(a);
+    }
+  } else {
+    printf("please enter zero or one number");
+  }
+  return 0;
+  
+}
 void sdb_set_batch_mode() {
   is_batch_mode = true;
 }
