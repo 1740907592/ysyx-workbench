@@ -11,19 +11,19 @@ VerilatedVcdC* tfp = NULL;
 Vtop* top;
 
 void step_and_dump_wave() {
-    top->clk = 0;
+    //top->clk = 0;
     top->eval();
     tfp->dump(contextp->time());
     contextp->timeInc(1);
-    top->clk = 1;
+    //top->clk = 1;
     top->eval();
     tfp->dump(contextp->time());
     contextp->timeInc(1);
 }
 void reset(int n) {
-  top->rst = 1;
-  while (n -- > 0) step_and_dump_wave();
-  top->rst = 0;
+  //top->rst = 1;
+  //while (n -- > 0) step_and_dump_wave();
+  //top->rst = 0;
 }
 
 void sim_init() {
