@@ -242,7 +242,7 @@ int check_parenthese(uint32_t l, uint32_t r) {
 int max(int a, int b) {
   return a < b ? b : a;
 }
-int eval(int l, int r) {
+long eval(int l, int r) {
   if (l > r) {
     //assert(0);
     return INT32_MAX;
@@ -333,7 +333,6 @@ int eval(int l, int r) {
       }
       //括号放错位置导致错误
   }
-  printf("entre right\n");
   return INT32_MAX;
 }
 long expr(char *e, bool *success) {
