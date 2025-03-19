@@ -332,7 +332,7 @@ int eval(int l, int r) {
   printf("entre right\n");
   return INT32_MAX;
 }
-word_t expr(char *e, bool *success) {
+long expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
