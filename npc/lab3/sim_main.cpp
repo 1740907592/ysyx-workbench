@@ -87,8 +87,6 @@ int main() {
             top->in_a = i;
             top->in_b = j;
             step_and_dump_wave();
-            res = (i <= j);
-            if (res != top->res);
               printf("ina = %d,inb = %d,res = %d\n",top->in_a,top->in_b,top->res);
           }
         }
