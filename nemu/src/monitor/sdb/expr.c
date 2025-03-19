@@ -265,6 +265,7 @@ uint32_t eval(uint32_t l, uint32_t r) {
           }
           case TK_MUL : case TK_DIV : {
             opLoc = max(opLoc, i);
+            break;
           }
 
 
@@ -310,9 +311,6 @@ uint32_t eval(uint32_t l, uint32_t r) {
       
       
       
-        
-      
-        
 
       }
     }
@@ -328,7 +326,7 @@ word_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   uint32_t t = eval(0, nr_token - 1);
-  if (t == INT32_MAX) {
+  if (t == -1) {
     *success = false;
     return 0;
   }
