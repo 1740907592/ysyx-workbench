@@ -274,7 +274,14 @@ uint32_t eval(uint32_t l, uint32_t r) {
 
         }
       //不关心ok,关心最后的位置
-      int type = tokens[opLoc].type;
+      
+      
+      
+      
+
+      }
+    }
+    int type = tokens[opLoc].type;
       uint32_t val1 = eval(l, opLoc - 1);
       uint32_t val2 = eval(opLoc - 1, r);
       //根据主运算符深度枚举,减少复杂度
@@ -311,15 +318,9 @@ uint32_t eval(uint32_t l, uint32_t r) {
           printf("NO type\n");
           assert(0);
       }
-      
-      
-      
-
-      }
-    }
-    return 1;
+      //括号放错位置导致错误
   }
-
+  assert(0);
 }
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
