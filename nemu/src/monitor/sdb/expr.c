@@ -171,7 +171,6 @@ static bool make_token(char *e) {
         intToString(val, tokens[i].str);
       } else {
         printf("couldn't transmit\n");
-        assert(0);
       }
     } else if (tokens[i].type == TK_HEX) {
       int val = strtol(tokens[i].str, NULL, 16);
