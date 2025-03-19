@@ -44,7 +44,7 @@ void sim_exit() {
 
 int main() {
     sim_init();
-    top.out = 1;
+    top->out = 1;
 
 
 
