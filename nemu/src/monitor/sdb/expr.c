@@ -19,7 +19,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
-
+#include <memory/paddr.h>
 enum {
   TK_NOTYPE = 256, TK_EQ,
   TK_NUM = 1,TK_KUOHAO,
@@ -167,7 +167,7 @@ static bool make_token(char *e) {
   for (int i = 0; i < nr_token; i++) {
     if (tokens[i].type == TK_REG) {
       bool st = 1;
-      long val = isa_reg_str2val(tokens[i].str, &st);
+      uint32_t val = isa_reg_str2val(tokens[i].str, &st);
       if (st) {
         intToString(val, tokens[i].str);
       } else {
@@ -175,7 +175,6 @@ static bool make_token(char *e) {
       }
     } else if (tokens[i].type == TK_HEX) {
       int val = strtol(tokens[i].str, NULL, 16);
-      //1. 太大溢出了,改用long
       intToString(val, tokens[i].str);
       //负号前后判断,和解引用一样
     } else if ((tokens[i].type == TK_SUB && 
@@ -202,7 +201,7 @@ static bool make_token(char *e) {
                 } else if (tokens[i + 1].type == TK_NUM) {
                   val = atoi(tokens[i + 1].str);
                 }
-                uint32_t now = *((uint32_t*)val);
+                uint32_t now =  paddr_read(val, 4);
                 intToString((int)now, tokens[i + 1].str);
 
                 for (int j = i + 1; j < nr_token; j++) {
