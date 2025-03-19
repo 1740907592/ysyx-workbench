@@ -89,7 +89,7 @@ typedef struct token {
 uint32_t len;
 static Token tokens[32] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
-void intToString(int val, char res[]) {
+void intToString(long val, char res[]) {
   char buf[32];
   int len = 0;
   int fushu = 0;
@@ -167,7 +167,7 @@ static bool make_token(char *e) {
   for (int i = 0; i < nr_token; i++) {
     if (tokens[i].type == TK_REG) {
       bool st = 1;
-      int val = isa_reg_str2val(tokens[i].str, &st);
+      long val = isa_reg_str2val(tokens[i].str, &st);
       if (st) {
         intToString(val, tokens[i].str);
       } else {
