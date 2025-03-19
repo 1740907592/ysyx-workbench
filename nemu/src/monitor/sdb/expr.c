@@ -143,6 +143,7 @@ static bool make_token(char *e) {
           case TK_REG:
           case TK_HEX:
             tokens[nr_token].type = rules[i].token_type;
+            memset(tokens[nr_token].str, 0, sizeof (tokens[nr_token].str));
             strncpy(tokens[nr_token].str, &e[position - substr_len], substr_len);
 
             nr_token++;
@@ -168,6 +169,7 @@ static bool make_token(char *e) {
     if (tokens[i].type == TK_REG) {
       bool st = 1;
       //评估也有这个问题,前面的结果好像影响到后面了,相互覆盖导致的?
+      //静态数组,赋值前要先情况缓冲区
       uint32_t val = isa_reg_str2val(tokens[i].str, &st);
       if (st) {
         intToString(val, tokens[i].str);
