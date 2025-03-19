@@ -202,7 +202,7 @@ static bool make_token(char *e) {
                   val = atoi(tokens[i + 1].str);
                 } else if (tokens[i + 1].type == TK_REG) {
                   bool st = 0;
-                  val = isa_reg_str2val(tokens[i].str, &st);
+                  val = isa_reg_str2val(tokens[i + 1].str, &st);
                 }
                 uint32_t now =  paddr_read(val, 4);
                 intToString((int)now, tokens[i + 1].str);
