@@ -167,6 +167,7 @@ static bool make_token(char *e) {
   for (int i = 0; i < nr_token; i++) {
     if (tokens[i].type == TK_REG) {
       bool st = 1;
+      //评估也有这个问题,前面的结果好像影响到后面了,相互覆盖导致的?
       uint32_t val = isa_reg_str2val(tokens[i].str, &st);
       if (st) {
         intToString(val, tokens[i].str);
