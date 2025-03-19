@@ -283,7 +283,7 @@ uint32_t eval(uint32_t l, uint32_t r) {
     }
     int type = tokens[opLoc].type;
       uint32_t val1 = eval(l, opLoc - 1);
-      uint32_t val2 = eval(opLoc - 1, r);
+      uint32_t val2 = eval(opLoc + 1, r);
       //根据主运算符深度枚举,减少复杂度
       switch (type) {
         case TK_ADD:
