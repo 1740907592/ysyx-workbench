@@ -135,7 +135,13 @@ static int cmd_info(char *args) {
       if (!strcmp(args,"r")) {
         isa_reg_display();
       } else if (!strcmp(test,"w")) {
+        WP* now = getHead();
+        while (now != NULL) {
+          printf("%-4s %-3s %-10s\n", "Num", "nowValue", "What");
 
+          printf("%-4d %-15lld %-6s\n", now->NO, now->nowAns, now->buf);
+
+        }
       } else {
         printf("please enter r or the w\n");
 
