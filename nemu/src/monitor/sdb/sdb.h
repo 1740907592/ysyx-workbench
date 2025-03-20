@@ -17,7 +17,17 @@
 #define __SDB_H__
 
 #include <common.h>
-
+typedef struct watchpoint {
+    int NO;
+    struct watchpoint *next;
+    char *buf;
+    long long nowAns;
+    /* TODO: Add more members if necessary */
+  
+  } WP;
+WP* getHead();
+WP* new_wp();
+WP* getHead();
 word_t expr(char *e, bool *success);
 
 #endif
