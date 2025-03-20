@@ -16,11 +16,12 @@
 #include "sdb.h"
 
 #define NR_WP 32
-
+//监视点池是为了像数组一样,管理监视点结构,链表是为了连接到每一个节点进行思考?
 typedef struct watchpoint {
   int NO;
   struct watchpoint *next;
-
+  char buf[128];
+  long long preAns;
   /* TODO: Add more members if necessary */
 
 } WP;
@@ -38,6 +39,30 @@ void init_wp_pool() {
   head = NULL;
   free_ = wp_pool;
 }
-
+//用池子管理,根据需要分配,返回时候进行添加,但是
 /* TODO: Implement the functionality of watchpoint */
 
+WP* new_wp() {
+  if (free_ == NULL) {
+    assert(0);
+  }
+  WP *now = free_;
+  free_ = now->next;
+  return now;
+
+}
+void free_wp(WP *wp) {
+  if (wp == NULL) return;
+  if (wp == head) {
+    head = head->next;
+  } else {
+    WP *pre = head;
+    while (pre != NULL && pre->next != wp) {
+      pre = pre->next;
+    }
+    if (pre == NULL) return;
+    pre->next = wp->next;
+  }
+  wp->next = free_;
+  free_ = wp;
+}

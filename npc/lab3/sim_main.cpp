@@ -41,7 +41,7 @@ int main() {
             step_and_dump_wave();
             if (top->res != top->in_a + top->in_b) {
               printf("ina = %d,inb = %d,res = %d\n",top->in_a,top->in_b,top->res);
-
+              
             }
 
           }
