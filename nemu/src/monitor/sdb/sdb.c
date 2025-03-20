@@ -57,6 +57,10 @@ static int cmd_si(char *args);
 static int cmd_info(char *args);
 static int cmd_xm(char *args);
 static int cmd_pg(char *args);
+static int cmd_watch(char *args);
+static int cmd_dw(char *args);
+
+
 static struct {
   const char *name;
   const char *description;
@@ -68,24 +72,45 @@ static struct {
   {"si", "let program step N instruction and pause execute, if N is not given,  the default is 1", cmd_si},
   {"info","print the register or the watch infomation",cmd_info},
   {"x", "print memory about expr", cmd_xm},
-  {"pg", "get the value", cmd_pg}
+  {"pg", "get the value", cmd_pg},
+  {"w", "set the watch dot,", cmd_watch},
+  {"d", "delete the watch poing", cmd_dw}
+
+
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD ARRLEN(cmd_table)
+static int cmd_dw(char* args) {
+   int now = atoi(args);
+   free_wp(now);
+   return 0;
+}
+static int cmd_watch(char *args) {
+   WP* now = new_wp();
+   now->buf = args;
+   bool flag = false;
+   long long val = expr(args, &flag);
+   if (val == INT32_MAX) {
+     return 1;
+   }
+ 
+   now->nowAns = val;
+   return 0;
 
+}
 static int cmd_pg(char* args){
   if(args == NULL){
       printf("No args\n");
       return 0;
   }
   bool flag = false;
-  int val = expr(args, &flag);
+  long long val = expr(args, &flag);
   if (val == INT32_MAX) {
-    return 0;
+    return 1;
   }
-  printf("the value is %d\n", val);
+  printf("the value is %lld\n", val);
   return 0;
   
 }
@@ -119,7 +144,13 @@ static int cmd_info(char *args) {
       if (!strcmp(args,"r")) {
         isa_reg_display();
       } else if (!strcmp(test,"w")) {
+        WP* now = getHead();
+        while (now != NULL) {
+          printf("%-4s %-3s %-10s\n", "Num", "nowValue", "What");
+          printf("%-4d %-15lld %-6s\n", now->NO, now->nowAns, now->buf);
+          now = now->next;
 
+        }
       } else {
         printf("please enter r or the w\n");
 

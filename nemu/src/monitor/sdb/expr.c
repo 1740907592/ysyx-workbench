@@ -239,10 +239,10 @@ int check_parenthese(uint32_t l, uint32_t r) {
   return balance == 0;
 }
 
-int max(int a, int b) {
+long long max(long long  a, long long b) {
   return a < b ? b : a;
 }
-int eval(int l, int r) {
+long long eval(int l, int r) {
   if (l > r) {
     //assert(0);
     return INT32_MAX;
@@ -296,8 +296,8 @@ int eval(int l, int r) {
       return INT32_MAX;
     }
     int type = tokens[opLoc].type;
-      long val1 = eval(l, opLoc - 1);
-      long val2 = eval(opLoc + 1, r);
+      long long val1 = eval(l, opLoc - 1);
+      long long val2 = eval(opLoc + 1, r);
       //根据主运算符深度枚举,减少复杂度
       switch (type) {
         case TK_ADD:
@@ -323,10 +323,10 @@ int eval(int l, int r) {
           return val1 != val2;
 
         case TK_OR:
-          return val1 || val2;
+          return val1 | val2;
 
         case TK_AND:
-          return val1 && val2;
+          return val1 & val2;
 
         default:
           printf("NO type\n");
@@ -335,14 +335,14 @@ int eval(int l, int r) {
   }
   return INT32_MAX;
 }
-long expr(char *e, bool *success) {
+long long expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  long t = eval(0, nr_token - 1);
+  long long t = eval(0, nr_token - 1);
   if (t == INT32_MAX) {
     *success = false;
     return 0;
