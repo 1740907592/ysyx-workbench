@@ -39,11 +39,13 @@ void examine_watch() {
     if (flag) {
       return;
     }
-  if (now != head->nowAns) {
+    if (now != head->nowAns) {
       nemu_state.state = NEMU_STOP;
       printf("the user trigger watch point %d\n", head->NO);
       return;
     }
+
+    head = head->next;
   }
 }
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
