@@ -58,6 +58,8 @@ static int cmd_info(char *args);
 static int cmd_xm(char *args);
 static int cmd_pg(char *args);
 static int cmd_watch(char *args);
+static int cmd_dw(char *args);
+
 
 static struct {
   const char *name;
@@ -71,13 +73,20 @@ static struct {
   {"info","print the register or the watch infomation",cmd_info},
   {"x", "print memory about expr", cmd_xm},
   {"pg", "get the value", cmd_pg},
-  {"w", "set the watch dot,", cmd_watch}
+  {"w", "set the watch dot,", cmd_watch},
+  {"d", "delete the watch poing", cmd_dw}
+
 
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD ARRLEN(cmd_table)
+static int cmd_dw(char* args) {
+   int now = atoi(args);
+   free_wp(now);
+   return 0;
+}
 static int cmd_watch(char *args) {
    WP* now = new_wp();
    now->buf = args;

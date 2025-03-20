@@ -47,18 +47,30 @@ WP* new_wp() {
   return head;
 
 }
-void free_wp(WP *wp) {
-  if (wp == NULL) return;
-  if (wp == head) {
-    head = head->next;
-  } else {
-    WP *pre = head;
-    while (pre != NULL && pre->next != wp) {
-      pre = pre->next;
-    }
-    if (pre == NULL) return;
-    pre->next = wp->next;
+void free_wp(int NO) {
+  // 有效性检查
+  if (head == NULL) return;
+  if (NO < 0 || NO >= NR_WP) return;
+
+  WP *target = NULL;
+  
+  if (head->NO == NO) {
+      target = head;
+      head = head->next;
   }
-  wp->next = free_;
-  free_ = wp;
+  else {
+      WP *pre = head;
+      while (pre->next != NULL && pre->next->NO != NO) {
+          pre = pre->next;
+      }
+      if (pre->next == NULL) return;
+      
+      target = pre->next;
+      pre->next = pre->next->next;
+  }
+
+  if (target != NULL) {
+      target->next = free_;
+      free_ = target;
+  }
 }
