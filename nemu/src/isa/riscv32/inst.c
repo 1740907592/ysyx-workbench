@@ -30,7 +30,7 @@ enum {
 
   TYPE_N, // none
 };
-
+//后面有几个数字久移动多少位,然后进行符号扩展
 #define src1R() do { *src1 = R(rs1); } while (0)
 #define src2R() do { *src2 = R(rs2); } while (0)
 #define immI() do { *imm = SEXT(BITS(i, 31, 20), 12);} while(0)
@@ -41,14 +41,14 @@ enum {
          (BITS(i, 19, 12) << 11) | \
          (BITS(i, 20, 20) << 10) | \
          (BITS(i, 30, 21) << 0); \
-  *imm = SEXT(*imm, 20) << 1; /* 符号扩展后左移1位 */ \
+  *imm = SEXT(*imm, 20) << 1; \
 } while (0)
 #define immSB() do{ \
   *imm = SEXT( \
-      (BITS(i, 31, 31) << 11) |  /* imm[12] */ \
-      (BITS(i, 7, 7)   << 10) |  /* imm[11] */ \
-      (BITS(i, 30, 25) << 4)  |  /* imm[10:5] */ \
-      (BITS(i, 11, 8)  << 0),     /* imm[4:1] */ \
+      (BITS(i, 31, 31) << 11) |  \
+      (BITS(i, 7, 7)   << 10) |  \
+      (BITS(i, 30, 25) << 4)  |  \
+      (BITS(i, 11, 8)  << 0),    \
       12 \
   ) << 1; \
 } while (0)
@@ -99,6 +99,10 @@ static int decode_exec(Decode *s) {
   INSTPAT_START();
   INSTPAT("??????? ????? ????? 000 ????? 0010011", addi    , I, R(rd) = src1 + imm, debug("addi %s, src %x, immI %d",reg_name(rd), src1, imm));
   INSTPAT("??????? ????? ????? 100 ????? 00000 11", lbu    , I, R(rd) = Mr(src1 + imm, 1));
+  INSTPAT("??????? ????? ????? 000 ????? 00000 11", lb    , I, R(rd) = Mr(src1 + imm, 1));
+  INSTPAT("??????? ????? ????? 001 ????? 00000 11", lh    , I, R(rd) = Mr(src1 + imm, 2));
+  INSTPAT("??????? ????? ????? 010 ????? 00000 11", lw    , I, R(rd) = Mr(src1 + imm, 4));
+
   INSTPAT("??????? ????? ????? 000 ????? 1100111", jalr    , I, R(rd) = s->pc + 4, s->dnpc = src1 + imm);
 
   INSTPAT("0000000 ????? ????? 000 ????? 0110011", add    , R, R(rd) = src1 + src2);
