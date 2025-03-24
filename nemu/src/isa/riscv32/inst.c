@@ -49,7 +49,7 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_
       src1R();          
       immI();
 
-      log_info("test %ls", imm); 
+      log_info("test %d", *imm); 
       break;
     }
     case TYPE_U:                   immU(); break;
