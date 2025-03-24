@@ -49,7 +49,7 @@
 #define log_err(M, ...) fprintf(stderr, "[ERROR] (%s:%d, fun: %s, errno: %s) " M "\n", __FILE__, __LINE__, __func__, clean_errno(), ##__VA_ARGS__)
 
 #define log_warn(M, ...) fprintf(stderr, "[WARN] (%s:%d, fun: %s, errno: %s) " M "\n", __FILE__, __LINE__, __func__, clean_errno(), ##__VA_ARGS__)
-#define log_info(M, ...) fprintf(stderr, "[INFO] (%s:%d, fun: %s) " M "\n", __FILE__, __LINE__, __func__, ##__VA_ARGS__)
+#define log_info(M, ...) fprintf(stderr, "[INFO] (%s:%d, fun: %s) " M "\n\n", __FILE__, __LINE__, __func__, ##__VA_ARGS__)
 #define check(A, M, ...) if(!(A)) { log_err(M, ##__VA_ARGS__); errno=0; goto error; }
 #define sentinel(M, ...) { log_err(M, ##__VA_ARGS__); errno=0; goto error; }
 #define check_mem(A) check((A), "Out of memory.")
