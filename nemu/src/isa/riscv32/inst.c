@@ -49,7 +49,7 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_
       src1R();          
       immI();
 
-      debug("test %d", *imm); 
+      debug("imm %d", *imm); 
       break;
     }
     case TYPE_U:                   immU(); break;
@@ -64,6 +64,8 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_
     }
     case TYPE_UJ: {
       immJ();
+      debug("imm %d", *imm); 
+
       break;
     }
     case TYPE_N: break;
