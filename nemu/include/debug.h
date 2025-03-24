@@ -39,7 +39,7 @@
 #define panic(format, ...) Assert(0, format, ## __VA_ARGS__)
 
 #define TODO() panic("please implement me")
-//#define NDEBUG 1
+#define NDEBUG 1
 #ifdef NDEBUG
 #define debug(M, ...)
 #else
