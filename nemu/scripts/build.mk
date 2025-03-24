@@ -6,7 +6,7 @@ SO = -so
 CFLAGS  += -fPIC -fvisibility=hidden
 LDFLAGS += -shared -fPIC
 endif
-CFLAGS += -save-temps
+CFLAGS += -save-temps -P
 
 WORK_DIR  = $(shell pwd)
 BUILD_DIR = $(WORK_DIR)/build
