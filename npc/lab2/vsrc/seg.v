@@ -12,5 +12,4 @@ assign segs[4] = 8'b01100110;
 assign segs[5] = 8'b10110110;
 assign segs[6] = 8'b10111110;
 assign segs[7] = 8'b11100000;
-assign h = ~segs[b];
 endmodule
