@@ -14,7 +14,6 @@ function addenv() {
 function init() {
   if [ -d $3 ]; then
     echo "$3 is already initialized, skipping..."
-    return
   fi
 
   while [ ! -d $3 ]; do
