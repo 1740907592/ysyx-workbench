@@ -42,3 +42,9 @@ _default:
 	@echo "Please run 'make' under subprojects."
 
 .PHONY: .git_commit .clean_index _default
+
+ini:
+	bash init.sh nemu
+	bash init.sh nvboard
+	bash init.sh am-kernels
+	bash init.sh abstract-machine
